@@ -1,3 +1,4 @@
-# ESP32X - Interfacing BionX Can-Bus
+#--BXBTL--
+Simple Logging of BionX G2 CAN-Bus Messages
+Copyright (C) 2020 Rainer Oberegger
 
-Copyright: Rainer Oberegger 2020
