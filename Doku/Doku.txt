@@ -1,0 +1,34 @@
+
+--BXBTL--
+Simple Logging of BionX G2 CAN-Bus Messages
+Copyright (C) 2020 Rainer Oberegger
+
+I am not a professional Coder and this is also the first Piece of Code i am doing on a ESP32, so please Dont
+bash me for the Code: Take it or leave it ;)
+
+
+Needed Hardware:
+*ESP32 v1 DEV Module with 16Mbit SPI Flash
+*CAN Transceiver: CTX=IO21, CRX=IO22 (I use here a MCP2551 with Level Shifters as MCP2551 is a 5V Device)
+*A BionX Bike with CAN-Bus and G1 or G2 Console (This will not work on G3 Protocol without massive changes)
+
+This Device does not need a separate Power supply and can be feeded via the 5.5V (typically red) Supply from the Battery.
+I have soldered a simple T-Type Connector (2x std Connectors, 1x DIL Header Female for ESPX)
+
+
+Usage:
+Pair your Phone via Bluetooth (classic Bluetooth), no Pin Needed
+Open a Bluetooth capable Terminal Program on your Phone (I use "Serial Bluetooth Terminal 1.32" from Kai Morich here)
+Send ? via Terminal to your ESP for Syntax.
+
+ATM there are three Log Modes implemented:
+'A' logs all incoming Messages and also prints out a Timestamp (Time on Packet Poll): ss.mmm (Runtime Seconds.milliseconds)
+'t' logs torque specific Data in filtered Form (Values for Torque and Power are integrated within a ~4s frame time)
+    This is ment to be used for longer period logging without having way to much Data sent
+    This also spits out more Datapoints, for Example Battery Data, a unknown Register,...
+'T' logs torque sepecific Data unfiltered - Values are sent in ~100ms Frames (only one Torque RX/TX Set is dismissed)
+ 
+ All Log Modes can be configured to work for a limited Time or unlimited.
+ Also you could stop Logging anytime by Command 'X' which is highly recommended to avoid possible Crashing of ESP32 
+ due constant FIFO overflow
+ 
